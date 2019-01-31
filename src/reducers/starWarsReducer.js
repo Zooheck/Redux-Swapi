@@ -1,4 +1,4 @@
-import { FETCHING, SUCCESS, FAILURE, NEXT_PAGE, PREVIOUS_PAGE } from "../actions/index";
+import { FETCHING, SUCCESS, FAILURE, CHANGE_PAGES } from "../actions/index";
 const initialState = {
   characters: [],
   isLoading: false,
@@ -24,21 +24,13 @@ export const charsReducer = (state = initialState, action) => {
         previous: action.payload.previous,
         next: action.payload.next
       }
-    case NEXT_PAGE:
+      case CHANGE_PAGES:
       return {
         ...state,
         characters: action.payload.results,
         isLoading: false,
         previous: action.payload.previous,
-        next: action.payload.next
-      }
-    case PREVIOUS_PAGE:
-      return {
-        ...state,
-        characters: action.payload.results,
-        isLoading: false,
-        previous: action.payload.previous,
-        next: action.payload.next
+        next: action.payload.next        
       }
     case FAILURE:
       return {
@@ -46,6 +38,7 @@ export const charsReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       }
+
     // Fill me in with the important reducers
     // action types should be FETCHING, SUCCESS and FAILURE
     // your switch statement should handle all of these cases.

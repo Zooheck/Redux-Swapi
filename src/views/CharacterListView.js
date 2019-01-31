@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { CharacterList } from "../components";
 // import actions
-import { getCharacters, nextPage, previousPage } from '../actions/index'
+import { getCharacters, changePages } from '../actions/index'
 
 class CharacterListView extends React.Component {
   constructor() {
@@ -16,11 +16,11 @@ class CharacterListView extends React.Component {
   }
   toggleNext = e => {
     e.preventDefault()
-    this.props.nextPage(this.props.next)
+    this.props.changePages(this.props.next)
   }
   togglePrevious = e => {
     e.preventDefault()
-    this.props.previousPage(this.props.previous)
+    this.props.changePages(this.props.previous)
   }
   render() {
     if (this.props.isLoading) {
@@ -53,7 +53,6 @@ export default connect(
   {
     /* action creators go here */
     getCharacters,
-    nextPage,
-    previousPage
+    changePages
   }
 )(CharacterListView);
