@@ -34,3 +34,13 @@ export const nextPage = props => dispatch => {
         })
         .catch(error => console.log(error))
 }
+export const previousPage = props => dispatch => {
+    dispatch({ type: FETCHING })
+    axios
+        .get(props)
+        .then(response => {
+            console.log(response)
+            dispatch({ type: PREVIOUS_PAGE, payload: response.data})
+        })
+        .catch(error => console.log(error))
+}

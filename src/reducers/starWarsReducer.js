@@ -32,6 +32,14 @@ export const charsReducer = (state = initialState, action) => {
         previous: action.payload.previous,
         next: action.payload.next
       }
+    case PREVIOUS_PAGE:
+      return {
+        ...state,
+        characters: action.payload.results,
+        isLoading: false,
+        previous: action.payload.previous,
+        next: action.payload.next
+      }
     case FAILURE:
       return {
         ...state,
