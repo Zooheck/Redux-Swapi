@@ -1,8 +1,10 @@
-import { FETCHING, SUCCESS, FAILURE } from "../actions/index";
+import { FETCHING, SUCCESS, FAILURE, NEXT_PAGE, PREVIOUS_PAGE } from "../actions/index";
 const initialState = {
   characters: [],
   isLoading: false,
-  error: null
+  error: null,
+  previous: '',
+  next: ''
   // Array characters, Boolean fetching, null error.
 };
 export const charsReducer = (state = initialState, action) => {
@@ -14,10 +16,21 @@ export const charsReducer = (state = initialState, action) => {
         isLoading: true
       }
     case SUCCESS:
+      console.log(action.payload.next)
       return {
         ...state,
-        characters: action.payload,
-        isLoading: false
+        characters: action.payload.results,
+        isLoading: false,
+        previous: action.payload.previous,
+        next: action.payload.next
+      }
+    case NEXT_PAGE:
+      return {
+        ...state,
+        characters: action.payload.results,
+        isLoading: false,
+        previous: action.payload.previous,
+        next: action.payload.next
       }
     case FAILURE:
       return {
